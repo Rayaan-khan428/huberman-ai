@@ -1,6 +1,6 @@
 // Sidebar.js
 import React from 'react';
-import { Box, Heading, List, ListItem, Link, Divider } from '@chakra-ui/react';
+import { Box, Heading, List, ListItem, Link, Divider, Spacer } from '@chakra-ui/react';
 import { useColorMode } from '@chakra-ui/react';
 
 function Sidebar() {
@@ -28,13 +28,19 @@ function Sidebar() {
       </Heading>
       <List spacing={2}>
         <ListItem>
-          <Link href="#faq1">FAQ 1</Link>
+          <Link href="#faq1">"How do I quit smoking?"</Link>
         </ListItem>
+        <br></br>
         <ListItem>
-          <Link href="#faq2">FAQ 2</Link>
+          <Link href="#faq2">"What is the best way to optimize my morning routine, for better overall health and productivity?"</Link>
         </ListItem>
+        <br></br>
         <ListItem>
-          <Link href="#faq3">FAQ 3</Link>
+          <Link href="#faq3">"Give me 10 tips on optimizing my sleep schedule, including the things I should avoid before going to bed."</Link>
+        </ListItem>
+        <br></br>
+        <ListItem>
+          <Link href="#faq4">"What occurs in the mind and body when someone has ADHD?"</Link>
         </ListItem>
         {/* Add more FAQ links as needed */}
       </List>
