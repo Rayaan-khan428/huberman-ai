@@ -1,21 +1,15 @@
-import json
 import os
 import re
-
 import openai
-import pandas as pd
-import matplotlib.pyplot as plt
 from transformers import GPT2TokenizerFast
-from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
-from langchain.chains import ConversationalRetrievalChain
 
 # Set your OpenAI API key
-openai.api_key = "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"
+openai.api_key = "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"
 
 
 def get_podcast_titles(folder_path):
@@ -35,7 +29,7 @@ def get_relevant_podcasts(question, podcast_titles):
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "system", "content": "I am provding you a list of podcast titles by Andrew Huberman, "
+        messages=[{"role": "system", "content": "I am providing you a list of podcast titles by Andrew Huberman, "
                                                 "I would like"
                                                 "you to determine the 5 relevant podcasts that will best answer the "
                                                 "users question"
@@ -52,7 +46,6 @@ def get_relevant_podcasts(question, podcast_titles):
     episodes = [line.split('. ')[1] for line in lines if line]  # Skip empty lines
 
     return episodes
-
 
 
 def combine(relevant_podcasts, input_dir="PDFs/processed_text", output_file_path="Final.txt"):
@@ -91,7 +84,44 @@ def combine(relevant_podcasts, input_dir="PDFs/processed_text", output_file_path
     with open(output_file_path, 'w') as file:
         file.write(combined_text)
 
-    file.close() # was causing glitches if we didn't close weridly
+    file.close()  # was causing glitches if we didn't close weridly
+
+
+def content_tokenizer():
+    # step  2: Open the file for tokenization
+    with open('Final.txt', 'r') as f:
+        text = f.read()
+
+    # Step 3: Create function to count tokens
+    tokenizer = GPT2TokenizerFast.from_pretrained("gpt2")
+
+    print(len(tokenizer.encode(text)))
+
+    # Step 4: Split text into chunks
+    text_splitter = RecursiveCharacterTextSplitter(
+
+        chunk_size=216,
+        chunk_overlap=42,
+        length_function=len(tokenizer.encode(text)),
+    )
+
+    chunks = text_splitter.create_documents([text])
+
+    type(chunks[0])
+
+    # Get embedding model
+    embeddings = OpenAIEmbeddings(openai_api_key="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")
+
+    # Create vector database
+    db = FAISS.from_documents(chunks, embeddings)
+
+    chain = load_qa_chain(OpenAI(temperature=0), chain_type="stuff")
+
+    query = "quit vaping"
+    docs = db.similarity_search(query)
+
+    print(chain.run(input_documents=docs, question=query))
+
 
 def main():
     folder_path = "PDFs"  # Replace with the path to your folder containing the PDFs
@@ -106,6 +136,8 @@ def main():
     print("\n\n")
     combine(relevant_podcasts)
     print("combined successfully")
+
+    content_tokenizer()
 
 
 if __name__ == "__main__":
