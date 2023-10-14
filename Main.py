@@ -1,5 +1,7 @@
 import json
 import os
+import re
+
 import openai
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,7 +15,7 @@ from langchain.llms import OpenAI
 from langchain.chains import ConversationalRetrievalChain
 
 # Set your OpenAI API key
-openai.api_key = "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"
+openai.api_key = "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"
 
 
 def get_podcast_titles(folder_path):
@@ -52,32 +54,44 @@ def get_relevant_podcasts(question, podcast_titles):
     return episodes
 
 
-def combine(relevant_podcasts):
+
+def combine(relevant_podcasts, input_dir="PDFs/processed_text", output_file_path="Final.txt"):
     """
     Combine the content of several text files into one big text file.
 
     Parameters:
-    relevant_podcasts (list): List of text file names to be combined.
+    relevant_podcasts (list): List of podcast titles to be combined.
     input_dir (str): Directory where the text files are located.
     output_file_path (str): Path where the combined text file should be saved.
     """
     combined_text = ''  # Initialize an empty string to hold the combined text
 
     for podcast in relevant_podcasts:
-        # Construct the path to the text file
-        file_path = os.path.join("PDFs/processed_text", f'{podcast}.txt')
+        # Extract the numerical prefix from the podcast title
+        match = re.match(r"(\d+)", podcast)
+        if match:
+            num_prefix = match.group(1)
+            # Search for a file with a matching numerical prefix
+            for file_name in os.listdir(input_dir):
+                if file_name.startswith(num_prefix):
+                    file_path = os.path.join(input_dir, file_name)
+                    print(f'Found matching file: {file_name}')
 
-        # Read the content of the text file
-        with open(file_path, 'r') as file:
-            text = file.read()
+                    # Read the content of the text file
+                    with open(file_path, 'r') as file:
+                        text = file.read()
 
-        # Append the content of the text file to the combined text, followed by a newline character
-        combined_text += text + '\n'
+                    # Append the content of the text file to the combined text, followed by a newline character
+                    combined_text += text + '\n'
+                    break  # Break out of the inner loop once a matching file is found
+        else:
+            print(f'No numerical prefix found in {podcast}')
 
     # Write the combined text to the output file
-    with open("PDFs/processed_text", 'w') as file:
+    with open(output_file_path, 'w') as file:
         file.write(combined_text)
 
+    file.close() # was causing glitches if we didn't close weridly
 
 def main():
     folder_path = "PDFs"  # Replace with the path to your folder containing the PDFs
@@ -89,6 +103,9 @@ def main():
     print("Top 5 relevant podcasts:")
     for i, title in enumerate(relevant_podcasts[::], start=1):
         print(f"{i}. {title}")
+    print("\n\n")
+    combine(relevant_podcasts)
+    print("combined successfully")
 
 
 if __name__ == "__main__":
