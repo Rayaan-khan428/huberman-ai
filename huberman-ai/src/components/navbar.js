@@ -1,4 +1,3 @@
-// src/components/Nav.js
 import React from 'react';
 import {
   Box,
@@ -19,17 +18,20 @@ import {
   Image,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 
 interface Props {
   children: React.ReactNode;
+  to: string;  // Add a 'to' prop
 }
 
 const NavLink = (props: Props) => {
-  const { children } = props;
+  const { children, to } = props;  // Destructure 'to' prop
 
   return (
     <Box
-      as="a"
+      as={Link}  // Change from 'a' to 'Link'
+      to={to}    // Use 'to' prop for the Link destination
       px={2}
       py={1}
       rounded={'md'}
@@ -37,7 +39,7 @@ const NavLink = (props: Props) => {
         textDecoration: 'none',
         bg: useColorModeValue('gray.200', 'gray.700'),
       }}
-      href={'#'}>
+    >
       {children}
     </Box>
   );
@@ -51,48 +53,19 @@ export default function Nav() {
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box><Image src="logo.png" alt="Logo" boxSize="60px" />
-</Box>
-
+          
+        <Box as={Link} to="/">
+            <Image src="logo.png" alt="Logo" boxSize="60px" />
+        </Box>
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
-              <NavLink>Meet Andrew</NavLink> {/* New "Meet Andrew" link */}
-              <NavLink>About</NavLink> {/* New "About" link */}
+              <NavLink to="/meetandrew">Meet Andrew</NavLink>  
+              <NavLink to="/about">About</NavLink>  
               <Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
 
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
-                  <Avatar
-                    size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
-                  />
-                </MenuButton>
-                <MenuList alignItems={'center'}>
-                  <br />
-                  <Center>
-                    <Avatar
-                      size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
-                    />
-                  </Center>
-                  <br />
-                  <Center>
-                    <p>Username</p>
-                  </Center>
-                  <br />
-                  <MenuDivider />
-                  <MenuItem>Your Servers</MenuItem>
-                  <MenuItem>Account Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
-                </MenuList>
-              </Menu>
+              {/* ... (rest of your code) */}
             </Stack>
           </Flex>
         </Flex>
