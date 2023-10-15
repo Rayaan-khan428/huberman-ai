@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {
   Box,
   Input,
@@ -9,8 +10,10 @@ import {
   Flex,
   Avatar,
 } from '@chakra-ui/react';
+import axios from 'axios';
 
 const Chat = () => {
+
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const { colorMode } = useColorMode();
@@ -24,11 +27,43 @@ const Chat = () => {
     scrollToBottom();
   }, [messages]);
 
-  const handleSubmit = () => {
+
+  function formatResponse(response) {
+    // Split the response into lines based on numbered points
+    const lines = response.split(/\d+\./).map(line => line.trim()).filter(line => line);
+
+    // Join the lines back with line breaks and numbered points
+    const formattedResponse = lines.map((line, index) => `${index + 1}. ${line}`).join('\n');
+
+    return formattedResponse;
+  }
+
+  const handleSubmit = async () => {
     if (message.trim() === '') return;
+    
+    // Add the user's message to the chat
     setMessages([...messages, { text: message, sender: 'user' }]);
+    
+    try {
+        // Make an API call to the Flask backend
+        const response = await axios.post('http://localhost:4000/ask', {
+            question: message
+        });
+
+        // Add the backend's response to the chat
+        if (response.data && response.data.response) {
+          const formattedResponse = formatResponse(response.data.response);
+          setMessages(prevMessages => [...prevMessages, { text: formattedResponse, sender: 'bot' }]);
+        }
+
+    } catch (error) {
+        console.error("Error communicating with backend:", error);
+    }
+
+    // Clear the input field
     setMessage('');
   };
+
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
