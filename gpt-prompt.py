@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 # Configure your API key
-openai.api_key = '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'
+openai.api_key = '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'
 
 app = Flask(__name__)
 CORS(app, methods=["GET", "POST", "OPTIONS"])  # This will allow all origins. For production, you should specify the allowed origins.

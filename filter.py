@@ -39,6 +39,5 @@ def process_directory(directory_path):
                     f.write(filtered_content)
 
 if __name__ == "__main__":
-    directory_path = input("Enter the path of the directory: ")
-    process_directory("PDFs/processed_text")
+    process_directory("Transcripts/processed_text")
     print("Processing complete!")
