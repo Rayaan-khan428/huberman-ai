@@ -47,15 +47,19 @@ function About() {
     <Box p={6}>
       <Heading mb={6}>About the Project</Heading>
       <Text mb={6}>
-        This project aims to [describe the purpose and significance of the project here]. 
-        Built using cutting-edge technologies, it serves [mention target audience] by [mention key features or benefits].
+        This project aims to help people make better decisions to lead better lives. 
+        Built using cutting-edge technologies, it serves customers by enabling them to 
+        change their life in ways that have been tested and verified by multiple research
+        papers.
       </Text>
 
       <Heading mb={4}>Skills & Technologies</Heading>
       <Flex mb={6} wrap="wrap">
         <Tag m={1} colorScheme="blue">React</Tag>
         <Tag m={1} colorScheme="green">Chakra UI</Tag>
-        {/* Add more tags as needed */}
+        <Tag m={1} colorScheme="red">Python</Tag>
+        <Tag m={1} colorScheme="pink">Flask</Tag>
+        <Tag m={1} colorScheme="purple">Open API</Tag>
       </Flex>
 
       <Heading mb={6}>Creators</Heading>
@@ -64,18 +68,18 @@ function About() {
         <CreatorProfile
           imageSrc="rayaan.jpg"
           name="Rayaan Khan"
-          bio="Rayaan Khan is a third year CS student at Wilfrid Laurier University, currently seeking internships for Winter / Summer 2024."
+          bio="Rayaan Khan is a third year CS student at Wilfrid Laurier University."
           linkedinUrl="https://www.linkedin.com/in/rayaankhan/"
           githubUrl="https://github.com/rayaankhan"
-          funFact="Rayaan loves hiking and has climbed three mountains!"
+          funFact="I started skiing at the age of 5 and have even raced competitively! "
         />
         <CreatorProfile
           imageSrc="umar.jpeg"
           name="Umar Rasool"
-          bio="Umar Rasool is a third year CS student at Wilfrid Laurier University, currently seeking internships for Winter / Summer 2024."
+          bio="Umar Rasool is a third year CS student at Wilfrid Laurier University."
           linkedinUrl="https://www.linkedin.com/in/umarrasool/"
           githubUrl="https://github.com/umarrasool"
-          funFact="Umar is a chess enthusiast and has a rating of 1800!"
+          funFact="Umar is a chess enthusiast with a score of 1500!"
         />
       </Flex>
     </Box>
