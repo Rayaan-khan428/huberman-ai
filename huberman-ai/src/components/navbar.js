@@ -1,37 +1,22 @@
 import React from 'react';
-import {
-  Box,
-  Flex,
-  Avatar,
-  Text,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
-  useColorMode,
-  Center,
-  Image,
+import { 
+  Box, Flex, Avatar, Text, Button, Menu, MenuButton, 
+  MenuList, MenuItem, MenuDivider, useDisclosure, 
+  useColorModeValue, Stack, useColorMode, Center, Image 
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { Link } from 'react-router-dom';  // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 
-interface Props {
+interface NavLinkProps {
   children: React.ReactNode;
-  to: string;  // Add a 'to' prop
+  to: string;
 }
 
-const NavLink = (props: Props) => {
-  const { children, to } = props;  // Destructure 'to' prop
-
+const NavLink: React.FC<NavLinkProps> = ({ children, to }) => {
   return (
     <Box
-      as={Link}  // Change from 'a' to 'Link'
-      to={to}    // Use 'to' prop for the Link destination
+      as={Link}
+      to={to}
       px={2}
       py={1}
       rounded={'md'}
@@ -45,7 +30,7 @@ const NavLink = (props: Props) => {
   );
 };
 
-export default function Nav() {
+const Nav: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -53,18 +38,16 @@ export default function Nav() {
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          
-        <Box as={Link} to="/">
+          <Box as={Link} to="/">
             <Image src="logo.png" alt="Logo" boxSize="60px" />
-        </Box>
+          </Box>
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
-              <NavLink to="/meetandrew">Meet Andrew</NavLink>  
-              <NavLink to="/about">About</NavLink>  
+              <NavLink to="/meetandrew">Meet Andrew</NavLink>
+              <NavLink to="/about">About</NavLink>
               <Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
-
               {/* ... (rest of your code) */}
             </Stack>
           </Flex>
@@ -73,3 +56,5 @@ export default function Nav() {
     </>
   );
 }
+
+export default Nav;
