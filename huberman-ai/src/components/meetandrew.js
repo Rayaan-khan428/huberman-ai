@@ -45,32 +45,27 @@ function MeetAndrew() {
         <TabPanels>
           <TabPanel>
             <Text fontSize="lg">
-              Andrew Huberman is a distinguished neuroscientist known for his extensive research...
-              {/* Rest of the biography */}
+            Andrew Huberman, a recognized expert in the field of neuroscience, currently holds a position as a tenured professor in the Department of Neurobiology at the Stanford University School of Medicine. His academic journey navigated through earning a Ph.D. in Neurobiology from the University of California, Davis, followed by postdoctoral research at the University of California, San Diego. Huberman’s fascination with the functioning and capabilities of the brain has not only shaped his career but has also propelled him into a position where he ardently seeks to bridge the gap between complex scientific discoveries and public understanding.
             </Text>
           </TabPanel>
           <TabPanel>
             <Text fontSize="lg">
-              Dr. Huberman's research primarily focuses on the mechanisms of the visual system...
-              {/* Rest of the research details */}
+            Dr. Huberman’s research predominantly revolves around the understanding of neural circuits, particularly those that govern visual perception, eye movements, and how we physiologically respond to threats and rewards. His laboratory, the Huberman Lab at Stanford University, delves into the intricate mechanisms of neural development and plasticity, especially within the visual system. Their research explores everything from how the eye and brain communicate to developing novel therapeutic strategies for various blinding conditions, aiming to unravel the secrets of the nervous system and its remarkable ability to adapt and recover.
             </Text>
           </TabPanel>
           <TabPanel>
             <Text fontSize="lg">
-              Some of Dr. Huberman's notable publications include...
-              {/* List of publications */}
+            With a prolific background in scientific writing, Dr. Huberman has contributed numerous articles to esteemed scientific journals. His research papers often center around neuroplasticity, neural regeneration, and the intricate workings of the visual system, consistently advancing the field's knowledge base. His work is frequently cited by fellow scientists and researchers, affirming the significant impact and relevance of his research within and beyond the scientific community. Dr. Huberman’s commitment to proliferating scientific knowledge also translates to his willingness to make such information accessible to public audiences, not just academics.
             </Text>
           </TabPanel>
           <TabPanel>
             <Text fontSize="lg">
-              Throughout his career, Dr. Huberman has received numerous awards...
-              {/* List of awards */}
+            Over the years, Andrew Huberman has been the recipient of numerous awards, recognizing his significant contributions to the field of neuroscience. Some notable acknowledgments include the McKnight Foundation Neuroscience Scholar Award and the Cogan Award from the Association for Research in Vision and Ophthalmology (ARVO). These awards honor his pioneering research, particularly within the realm of visual neuroscience and neural regeneration. The accolades he has received underscore his commitment to rigorous scientific exploration and his significant contributions to advancing understanding within his field.
             </Text>
           </TabPanel>
           <TabPanel>
             <Text fontSize="lg">
-              Dr. Huberman has appeared in numerous media outlets...
-              {/* Media appearances and embedded videos */}
+            In addition to his research and academic endeavors, Dr. Huberman has emerged as a prominent figure in media, particularly for making neuroscience accessible and comprehensible to the general public. Through hosting the "Huberman Lab Podcast", he distills complex neuroscientific concepts into digestible and practical insights for enhancing mental and physical well-being. Moreover, his expertise is frequently sought after for various media appearances, public talks, and interviews, where he passionately discusses topics ranging from sleep and stress to enhancing cognitive and physical performance through a neuroscientific lens.
             </Text>
           </TabPanel>
         </TabPanels>

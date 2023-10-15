@@ -37,6 +37,7 @@ const Nav = () => {
           </Box>
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
+            <NavLink to="/chat">Chat</NavLink>
               <NavLink to="/meetandrew">Meet Andrew</NavLink>
               <NavLink to="/about">About</NavLink>
               <Button onClick={toggleColorMode}>
