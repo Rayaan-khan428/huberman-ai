@@ -29,11 +29,12 @@ def process_pdfs(folder_path):
 
             # Save the cleaned text to a new file
             output_filename = filename.replace(".pdf", ".txt")
-            output_path = os.path.join(folder_path + '/processed_text', output_filename)
+            output_path = os.path.join('PDFs/processed_text', output_filename)
             with open(output_path, "w") as output_file:
                 output_file.write(output_text)
 
             # Close the PDF document
+            print(f"{output_filename} saved")
             pdf_document.close()
 
 
