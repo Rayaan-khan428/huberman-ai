@@ -22,7 +22,10 @@ The repository contains a directory named "PDFs" which seems to have PDF files r
 
 ## Getting Started
 
-Working on this
+1. Clone Repository Locally
+2. run code . to open the project.
+3. In terminal run "python3 gpt-prompt.py" this will run the backend
+4. In another terminal instance cd into huberman-ai, then run Npm Install then Npm start to get the react side of things going
 
 ## Usage
 
