@@ -1,6 +1,6 @@
 // Sidebar.js
 import React from 'react';
-import { Box, Heading, List, ListItem, Link, Divider, Spacer } from '@chakra-ui/react';
+import { Box, Heading, List, ListItem, Link, Divider} from '@chakra-ui/react';
 import { useColorMode } from '@chakra-ui/react';
 
 function Sidebar() {

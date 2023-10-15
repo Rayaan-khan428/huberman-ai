@@ -1,18 +1,12 @@
 import React from 'react';
 import { 
-  Box, Flex, Avatar, Text, Button, Menu, MenuButton, 
-  MenuList, MenuItem, MenuDivider, useDisclosure, 
-  useColorModeValue, Stack, useColorMode, Center, Image 
+  Box, Flex, Button, useDisclosure, 
+  useColorModeValue, Stack, useColorMode, Image 
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 
-interface NavLinkProps {
-  children: React.ReactNode;
-  to: string;
-}
-
-const NavLink: React.FC<NavLinkProps> = ({ children, to }) => {
+const NavLink = ({ children, to }) => {
   return (
     <Box
       as={Link}
@@ -30,7 +24,7 @@ const NavLink: React.FC<NavLinkProps> = ({ children, to }) => {
   );
 };
 
-const Nav: React.FC = () => {
+const Nav = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
