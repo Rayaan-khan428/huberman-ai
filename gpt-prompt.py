@@ -1,8 +1,23 @@
-import openai  # Assuming a library similar to OpenAI's GPT-3 library is available for GPT-4
+import openai
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 # Configure your API key
-openai.api_key = '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'
+openai.api_key = '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'
 
+app = Flask(__name__)
+CORS(app, methods=["GET", "POST", "OPTIONS"])  # This will allow all origins. For production, you should specify the allowed origins.
+
+@app.route('/ask', methods=['POST'])
+def ask():
+    data = request.json
+    question = data['question']
+
+    # Process the question with GPT and get the response
+    print('received a request')
+    response = ask_huberman(question)
+
+    return jsonify({"response": response})
 
 def ask_huberman(question):
     # Instruction and context formatting
@@ -36,8 +51,5 @@ def ask_huberman(question):
         print(f"An error occurred: {e}")
         return None
 
-
-# Example usage:
-question = "What is the optimal morning routine for someone who lives in a place where it is dark for 6 months"
-response = ask_huberman(question)
-print(response)
+if __name__ == "__main__":
+    app.run(port=4000)
